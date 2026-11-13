@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Directorio de contactos</title>
+</head>
+<body>
+
+    <div>
+        <h1>Directorio de contactos</h1>
+
+        {% with mesajes= get_flashed_messages() %}
+            {% if mesajes %}
+                  {% for msj in mesajes %}
+                        <h3>{{ msj }}</h3>
+                    {% endfor %}
+                 {% endif %}
+        {% endwith %}
+
+        <!-- FORMULARIOOOOOOO-->
+         <form action="/guardar" method="POST">
+            <input type="text" name="txtNombre" placeholder="Nombre">
+            <input type="text" name="txtApellido" placeholder="Apellido">
+            <input type="text" name="txtTelefono" placeholder="Telefono">
+            <input type="text" name="txtCorreo" placeholder="Correo">
+            <input type="text" name="txtDireccion" placeholder="Direccion">
+            <button type="submit">Guardar Contacto</button>
+         </form>
+
+         <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Direccion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+         <tbody>
+            {% for alb in listDirectorio %}
+            <tr>
+                <td>{{alb.0}}</td>
+                <td>{{alb.1}}</td>
+                <td>{{alb.2}}</td>
+                <td>{{alb.3}}</td>
+                <td>{{alb.4}}</td>
+                <td>{{alb.5}}</td>
+                <td>
+                    <a href="/editar">Editar</a>
+                    <a href="#">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+         </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
